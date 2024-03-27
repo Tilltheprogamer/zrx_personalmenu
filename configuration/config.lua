@@ -2,27 +2,27 @@ Config = {}
 
 --| Discord Webhook in 'configuration/webhook.lua'
 Config.Command = 'personalmenu' --| Command
-Config.Key = 'F5' --| Note: Its a keymapping
+Config.Key = 'F3' --| Note: Its a keymapping
 Config.Cooldown = 3 --| Note: Only for client > server or server > client | To disable set to 0 | In seconds
 Config.CheckForUpdates = true --| Check for updates?
 Config.IconColor  = 'rgba(173, 216, 230, 1)' --| rgba format
 Config.UseScreenshot = true --| If enabled it will display a picture when you create a navi | NEEDS screenshot-basic
 
 Config.Menu = {
-    type = 'context', --| context or menu
+    type = 'menu', --| context or menu
     postition = 'top-left' --| top-left, top-right, bottom-left or bottom-right
 }
 
 Config.Option = {
     player = true,
     clothe = true,
-    idcard = true, --| Config.IdcardMenu
+    idcard = false, --| Config.IdcardMenu
     vehicle = true,
     settings = true,
-    bills = true,
+    bills = false,
     company = true, --| Config.Company
     navigation = true, --| Config.Navigation
-    editor = true,
+    editor = false,
     information = true, --| Config.Information
 }
 
@@ -35,6 +35,9 @@ Config.Company = {
 
     allowedGrades = { --| grade names for company feature
         boss = true,
+        assistant_chief = true,
+        deputy_cheif = true,
+        commander = true,
         co_boss = true,
     }
 }
@@ -73,8 +76,8 @@ end
 
 --| Place here your links/informations
 Config.Information = {
-    { label = 'Discord', value = 'discord.gg/example' },
-    { label = 'Website', value = 'www.example.com' },
+    { label = 'Discord', value = 'discord.gg/XwrHnJuNgt' },
+    -- { label = 'Website', value = 'www.example.com' },
 }
 
 --| Place here your idcard actions
@@ -140,6 +143,8 @@ end
 Config.CanOpenExtras = function()
     return GetVehicleBodyHealth(GetVehiclePedIsIn(cache.ped, false)) >= 950
 end
+
+Config.GiveKeyMenu = false
 
 --| Add here your add/remove key export
 Config.VehicleKeys = function(action, player, vehicle)
