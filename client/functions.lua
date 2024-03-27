@@ -114,7 +114,7 @@ local CLOTHE_DATA = {
             male = {
                 0, 0
             },
-
+            
             female = {
                 0, 0
             }
@@ -124,7 +124,7 @@ local CLOTHE_DATA = {
             male = {
                 15, 0
             },
-
+            
             female = {
                 15, 0
             }
@@ -134,7 +134,7 @@ local CLOTHE_DATA = {
             male = {
                 21, 0
             },
-
+            
             female = {
                 17, 0
             }
@@ -144,7 +144,7 @@ local CLOTHE_DATA = {
             male = {
                 0, 0
             },
-
+            
             female = {
                 0, 0
             }
@@ -154,7 +154,7 @@ local CLOTHE_DATA = {
             male = {
                 34, 0
             },
-
+            
             female = {
                 35, 0
             }
@@ -164,7 +164,7 @@ local CLOTHE_DATA = {
             male = {
                 0, 0
             },
-
+            
             female = {
                 0, 0
             }
@@ -174,7 +174,7 @@ local CLOTHE_DATA = {
             male = {
                 15, 0
             },
-
+            
             female = {
                 14, 0
             }
@@ -184,7 +184,7 @@ local CLOTHE_DATA = {
             male = {
                 0, 0
             },
-
+            
             female = {
                 0, 0
             }
@@ -194,7 +194,7 @@ local CLOTHE_DATA = {
             male = {
                 15, 0
             },
-
+            
             female = {
                 82, 0
             }
@@ -978,19 +978,21 @@ OpenVehicleMenu = function()
         end
     }
 
-    MENU[#MENU + 1] = {
-        title = Strings.give_title,
-        description = Strings.give_desc,
-        arrow = DoesEntityExist(nearPlayerPed) and IsVehicleValid(),
-        icon = 'fa-solid fa-car',
-        iconColor = Config.IconColor,
-        disabled = not DoesEntityExist(nearPlayerPed) or not IsVehicleValid(),
-        onSelect = function()
-            local plate = GetVehicleNumberPlateText(cache.vehicle)
-
-            TriggerServerEvent('zrx_personalmenu:server:giveCar', nearPlayerId, plate)
-        end
-    }
+    if Config.GiveKeyMenu then
+        MENU[#MENU + 1] = {
+            title = Strings.give_title,
+            description = Strings.give_desc,
+            arrow = DoesEntityExist(nearPlayerPed) and IsVehicleValid(),
+            icon = 'fa-solid fa-car',
+            iconColor = Config.IconColor,
+            disabled = not DoesEntityExist(nearPlayerPed) or not IsVehicleValid(),
+            onSelect = function()
+                local plate = GetVehicleNumberPlateText(cache.vehicle)
+    
+                TriggerServerEvent('zrx_personalmenu:server:giveCar', nearPlayerId, plate)
+            end
+        }
+    end
 
     MENU[#MENU + 1] = {
         title = Strings.extra_title,
