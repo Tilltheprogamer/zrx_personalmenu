@@ -35,7 +35,7 @@ end)
 
 lib.callback.register('zrx_personalmenu:server:getPlayerData', function(player)
     if Player.HasCooldown(player) then return {} end
-    local xPlayer = CORE.Bridge.getVariables(player)
+    local xPlayer = CORE.Bridge.getVariabless(player)
 
     if Webhook.Links.callback:len() > 0 then
         local message = [[
@@ -134,7 +134,7 @@ RegisterNetEvent('zrx_personalmenu:server:managePlayer', function(target, action
         return Config.PunishPlayer(source, 'Tried to trigger "zrx_personalmenu:server:managePlayer"')
     end
 
-    local xPlayer, xTarget = CORE.Bridge.getVariable(source), CORE.Bridge.getVariable(target)
+    local xPlayer, xTarget = CORE.Bridge.getVariables(source), CORE.Bridge.getVariables(target)
 
     if action == 'hire' then
         Player.Hire(xPlayer, xTarget)
@@ -219,11 +219,11 @@ end)
 
 RegisterNetEvent('zrx_personalmenu:server:giveCar', function(target, plate)
     if not target or not plate then return end
-	local xPlayer = CORE.Bridge.getVariable(source)
+	local xPlayer = CORE.Bridge.getVariables(source)
     local row = MySQL.single.await('SELECT `plate`, `owner` FROM `owned_vehicles` WHERE `plate` = ? LIMIT 1', { plate })
 
     if row?.plate == plate and row?.owner == xPlayer.identifier then
-        local xTarget = CORE.Bridge.getVariable(target)
+        local xTarget = CORE.Bridge.getVariables(target)
 
         MySQL.update.await('UPDATE `owned_vehicles` SET `owner` = ? WHERE `plate` = ?', { xTarget.identifier, plate })
 
