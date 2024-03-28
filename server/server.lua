@@ -35,7 +35,7 @@ end)
 
 lib.callback.register('zrx_personalmenu:server:getPlayerData', function(player)
     if Player.HasCooldown(player) then return {} end
-    local xPlayer = CORE.Bridge.getVariables(player)
+    local xPlayer = CORE.Bridge.getVariabless(player)
 
     if Webhook.Links.callback:len() > 0 then
         local message = [[
